@@ -1,6 +1,6 @@
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - init: brew install gh; export GITHUB_TOKEN=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 # runs during prebuild
+  - init: brew install gh; export GITHUB_TOKEN=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; eval "$(code ~/.bash_profile)"; eval "$(gh completion -s bash)" # runs during prebuild
     command: echo 'start script'
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
