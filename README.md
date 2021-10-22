@@ -7,9 +7,10 @@ alu0101531700@ull.edu.es
  2. [gh create repo](create)
  3. [gh delete repo](delete)
  4. [gh alias](#alias)
-  4.1 [gh alias set](#aliasset)
-  4.2 [gh alias list](#aliaslist)
-  4.3 [gh alias delete](#aliasdelete)
+
+    4.1 [gh alias set](#aliasset)
+    4.2 [gh alias list](#aliaslist)
+    4.3 [gh alias delete](#aliasdelete)
 
 
 
