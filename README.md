@@ -7,10 +7,9 @@ alu0101531700@ull.edu.es
  2. [gh create repo](create)
  3. [gh delete repo](delete)
  4. [gh alias](#alias)
-
-    4.1 [gh alias set](#aliasset)
-    4.2 [gh alias list](#aliaslist)
-    4.3 [gh alias delete](#aliasdelete)
+    * [gh alias set](#aliasset)
+    * [gh alias list](#aliaslist)
+    * [gh alias delete](#aliasdelete)
 
 
 
@@ -27,32 +26,32 @@ En primero lugar para crear un repositorio sobre gitpod es necesario autenticars
 
 Será necesario generar un token  sobre en su perfil de GitHub y luege pegarlo sobre el terminal.
 
+
+
 Un vez que nos encontramos en nuestro _workspace_ es posible crear un repositorio ejecutando el codigo `gh repo create ULL-ESIT-DMSI-1920/prueba-lauramanzini` se puede crear el repositorio.
 
-![Create repo]()
+![Create repo](Img2_create1.jpg)
 
 En nuestro caso el repositorio será parte de la organización ULL-ESIT-DMSI-1920.
 
 Para visualizar una lista de los repositorios que estan entre la organización se ejecuta `gh repo list ULL-ESIT-DMSI-1920`.
 
-![Repo list]()
+![Repo list](Img2_view.jpg)
 
 <a name = "delete"><a>
 ## 3. gh delete repo
 
-Para eliminar un repositorio se puede utilizar el comando `gh api --help` para tener una lista de los _flags_.
+Para eliminar un repositorio se utiliza el comando `gh api` para tener una lista de los _flags_ que son disponibles para el comando.
 
-![api help](/Imagenes/)
+![api help](/Img1_gh_api_help.jpg)
 
-El flag `-X` nos dice que va a ser posible utilizar uno de los metodos (get/delete ...) para hacer cambios a los repositorios.
+El flag `-X` nos dice que va a ser posible utilizar uno de los metodos (get,delete ...) para cambiar los repositorios.
 
-Se puede cons documentación para eliminar un repositorio se encuentra en [las referencias de los repositorios API](https://docs.github.com/en/rest/reference/repos) 
+Se puede consultar la documentación para eliminar un repositorio se encuentra en [las referencias de los repositorios API](https://docs.github.com/en/rest/reference/repos). 
 
-![documentación](/Imagenes)
+Desde la documentación podemos ver como a través del comando `curl` es posible eliminar el repositorio.
 
-Desde la documentación podemos ver como a través del comand
-
-Ejecutando el codigo
+Ejecutando el codigo:
 
 ```
 curl \
@@ -72,10 +71,12 @@ gh api \
   https://api.github.com/repos/ULL-ESIT-DMSI-1920/prueba-lauramanzini
 ```
 
+![delete repo](/Img4_delete_repo.jpg)
+
 <a name = "alias"><a>
 ## 4. gh alias
 
-El `gh alias set` se utiliza para semplificar y crear _shortcut_ para todos los comandos que se utilizan más frecuentemente de gh. La [documentación](https://cli.github.com/manual/gh_alias) explica como utilizar el comando.
+El comando `gh alias` se utiliza para semplificar y crear _shortcut_ para todos los comandos de gh que se utilizan más frecuentemente. La [documentación](https://cli.github.com/manual/gh_alias) explica como utilizar el comando.
 
 Es importante explicitar todos los _arguments_ y también los _flags_ del comando de lo que se quiere hacer el alias.
 
@@ -92,28 +93,26 @@ El comando base que se utiliza para hacer un alias es el siguiente:
  Se puede requisir la lista compleda de todos los argomentos ejecutando `gh alias <comando> --help`
 
 <a name = "aliasset"><a>
- ## 4.1 alias set
+ ## alias set
 
 El comando de alias `set` permite que crear un nuevo alias. Creamos por ejemplo para el comando `gh repo list`. En este caso el alias que utilizaremos serà `list`.
 
-![alias create](/Imagenes/Img7_alias_set)
+![alias create](/Img5_alias_set.jpg)
 
 Se nota cómo **no** se pone el comando *gh* entre los ápices del comando que nos quieremos hacer el alias. 
 
-Si no
-
 <a name = "aliaslist"><a>
- ## 4.2 alias list
+ ## alias list
 
 Para obtener una lista de los alias que se han credo se utiliza el comando `gh alias list`.
 
-![alias list](/Imagenes/Img_alias_list)
+![alias list](/Img5_alias_list.jpg)
 
 <a name = "aliasdelete"><a>
- ## 4.2 alias delete
+ ##  alias delete
 
  Para eliminar un alias se utiliza el comando `gh alias delete <alias>`
 
-![alias delete](/Imagenes/Img_alias_delete)
+![alias delete](/Img5_alias_delete.jpg )
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6022596&assignment_repo_type=AssignmentRepo)
