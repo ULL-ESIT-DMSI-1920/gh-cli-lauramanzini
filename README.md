@@ -120,26 +120,25 @@ Para obtener una lista de los alias que se han credo se utiliza el comando `gh a
 <a name = "selectorgs"><a>
 ## 5. Seleccionar las organizaciones a las que se apartenece
 
-Para ver todas las organizaciones a las que pertenezco utilizo el comando `gh api /organizations`. A través de este comando se obtiene un file .json con todas las informaciones sobre las organizaciones a las que el mi perfil de GitHub está asociado.
+Para ver todas las organizaciones a las que pertenezco utilizo el comando  se consulta la [documentación de GitHub](https://docs.github.com/en/rest/reference/orgs#list-organization-memberships-for-the-authenticated-user) y se encuentra el comando `gh api  /user/memberships/orgs` que nos permite de obtener una lista de todas las afiliaciones a organizaciones.
 
-![gh api](/Img6_gh_api.jpg)
+![gh api](Img6_gh_memberships.jpg)
 
+Añadendo el comando `| jq` al final se puede acceder al file .json con todas las informaciones sobre las organizaciones a las que el mi perfil de GitHub está asociado.
 
-Con el comando `gh api /organizationes | jq`
+El file json que obtenimos es un file que es muy largo y a veces bastante dificil de entender. Para solucionar este problema se utiliza el comando `--paginate` realice solicitudes HTTP adicionales para obtener todas las páginas de resultados.
 
+Ejecutamos `gh api --paginate /user/memberships/orgs | jq`.
 
+![gh api paginate](/Img6_gh_memberships_jq.jpg)
 
-A través del comando `gh api  /user/memberships/orgs`
+Para obtener las informacciones que están contenida en el file json que hemos obtenido es necesario instalar el [jq json queries](https://stedolan.github.io/jq/). Esta herramienta nos permite de acceder a las informaciones contenida en qualquier file json.
 
-El file .json que obtenimos es un file que es muy largo y a veces bastante dificil de entender. Para solucionar este problema se utiliza el comando `--paginate` realice solicitudes HTTP adicionales para obtener todas las páginas de resultados.
+Los comandos más utilizados se pueden consultar al siguiente [enlace](https://stedolan.github.io/jq/manual/#Basicfilters).
 
-A través del comando `gh api -- paginate /user/memberships/orgs | jq. ` se puede 
+Después de instalar la herramienta se ejecuta el codigo `brew install jq` sobre GitPod 
 
-Para obtener las informacciones que están contenida en el file json que obtenemos es necesario instalar el [jq json queries)(https://stedolan.github.io/jq/). Esta herramienta nos permite de acceder a las informaciones contenida en qualquier file json.
-
-Después de instalar la herramient se ejecuta el codigo `brew install jq` sobre GitPod 
-
-![jq install](/Img8_jq)
+![jq install](/Img7_jq_install.jpg)
 
 El file json es un array de elementos y para acceder a esos se utiliza la siguiente reglas:
 
@@ -153,12 +152,16 @@ Una otra manera de obtener las misma informaciones pero en formato diferente es 
 
 Para acceder a las organizaciones a las que apartenezco es necesario acceder en primero al campo *organizations* y luego al campo *login* de lo mismo. Se ejecuta `gh api /user/memberships/orgs jq '.[].organization.login'`.
 
-![Organizations list](Img9_organizations_login.jpg)
+![Organizations list](/Img8_organizations_login.jpg)
 
 <a name = "orgslist"><a>
 ## 6. orgs-list
 
-El objectivo ahora es crear un comando alias que nos permite de acceder a las organizaciones 
+El objectivo ahora es crear un comando alias que nos permite de acceder a las organizaciones. El comando que se ejecuta para obtener esta información es `gh api /user/membership/orgs | jq '.[].organization | .login, .url'`
+
+![organization login y url](/Img9_login_url.jpg)
+
+
 
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6022596&assignment_repo_type=AssignmentRepo)
