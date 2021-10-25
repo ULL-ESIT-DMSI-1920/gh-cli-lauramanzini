@@ -10,6 +10,7 @@ alu0101531700@ull.edu.es
     * [gh alias set](#aliasset)
     * [gh alias list](#aliaslist)
     * [gh alias delete](#aliasdelete)
+5. [gh org list](#orglist)
 
 
 
@@ -114,5 +115,33 @@ Para obtener una lista de los alias que se han credo se utiliza el comando `gh a
  Para eliminar un alias se utiliza el comando `gh alias delete <alias>`
 
 ![alias delete](/Img5_alias_delete.jpg )
+
+<a name = "orglist"><a>
+## 5. org list
+
+Para ver todas las organizaciones a las que pertenezco utilizo el comando `gh api /organizations`. A través de este comando se obtiene un file .json con todas las informaciones sobre las organizaciones a las que el mi perfil de GitHub está asociado.
+
+![gh api](/Img6_gh_api.jpg)
+
+
+Con el comando `gh api /organizationes | jq`
+
+
+
+A través del comando `gh api  /user/memberships/orgs`
+
+El file .json que obtenimos es un file que es muy largo y a veces bastante dificil de entender. Para solucionar este problema se utiliza el comando `--paginate` realice solicitudes HTTP adicionales para obtener todas las páginas de resultados.
+
+A través del comando `gh api -- paginate /user/memberships/orgs | jq. ` se puede 
+
+Para obtener las informacciones que están contenida en el file json que obtenemos es necesario instalar el [jq json queries)(https://stedolan.github.io/jq/). Esta herramienta nos permite de acceder a las informaciones contenida en qualquier file json.
+
+Después de instalar la herramient se ejecuta el codigo `brew install jq` sobre GitPod 
+
+![jq install](/Img8_jq)
+
+
+
+
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6022596&assignment_repo_type=AssignmentRepo)
