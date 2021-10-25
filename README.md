@@ -99,7 +99,7 @@ El comando base que se utiliza para hacer un alias es el siguiente:
 
 El comando de alias `set` permite que crear un nuevo alias. Creamos por ejemplo para el comando `gh repo list`. En este caso el alias que utilizaremos serà `list`.
 
-![alias create](/Img5_alias_set.jpg)
+![alias set](/Img5_alias_set.jpg)
 
 Se nota cómo **no** se pone el comando *gh* entre los ápices del comando que nos quieremos hacer el alias. 
 
