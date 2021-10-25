@@ -3,14 +3,15 @@
 
 alu0101531700@ull.edu.es
 
- 1. [Introducción](intro)
- 2. [gh create repo](create)
- 3. [gh delete repo](delete)
- 4. [gh alias](#alias)
-    * [gh alias set](#aliasset)
-    * [gh alias list](#aliaslist)
-    * [gh alias delete](#aliasdelete)
-5. [gh org list](#orglist)
+1. [Introducción](intro)
+2. [gh create repo](create)
+3. [gh delete repo](delete)
+4. [gh alias](#alias)
+  * [gh alias set](#aliasset)
+  * [gh alias list](#aliaslist)
+  * [gh alias delete](#aliasdelete)
+5. [Seleccionar las organizaciones a las que se apartenece](#selectorgs)
+6. [gh org list](#orglist)
 
 
 
@@ -116,8 +117,8 @@ Para obtener una lista de los alias que se han credo se utiliza el comando `gh a
 
 ![alias delete](/Img5_alias_delete.jpg )
 
-<a name = "orglist"><a>
-## 5. org list
+<a name = "selectorgs"><a>
+## 5. Seleccionar las organizaciones a las que se apartenece
 
 Para ver todas las organizaciones a las que pertenezco utilizo el comando `gh api /organizations`. A través de este comando se obtiene un file .json con todas las informaciones sobre las organizaciones a las que el mi perfil de GitHub está asociado.
 
@@ -140,8 +141,24 @@ Después de instalar la herramient se ejecuta el codigo `brew install jq` sobre 
 
 ![jq install](/Img8_jq)
 
+El file json es un array de elementos y para acceder a esos se utiliza la siguiente reglas:
 
+* Se utilizan las comillas simples '' para indicar los elementos del file json que queremos ver
+* En los corchetes ponemos la posicción del elemento del array que queremos seleccionar
+* Despues de los corchetes ponemos un punto `.` cada vez que queremos acceder a uno de los elementos del elemento del array seleccionado el los corchetes
 
+Por ejempo ejecutando el codigo `gh api /user/memberships/orgs | jq '.[0]'` obtenimos todas las informaciones relativo a el primero elemento del array, es decir el elemento que es en la posicción 0 del array.
+
+Una otra manera de obtener las misma informaciones pero en formato diferente es ejecutando el codigo `gh api /user/memberships/orgs --jq '.[0]'`
+
+Para acceder a las organizaciones a las que apartenezco es necesario acceder en primero al campo *organizations* y luego al campo *login* de lo mismo. Se ejecuta `gh api /user/memberships/orgs jq '.[].organization.login'`.
+
+![Organizations list](Img9_organizations_login.jpg)
+
+<a name = "orgslist"><a>
+## 6. orgs-list
+
+El objectivo ahora es crear un comando alias que nos permite de acceder a las organizaciones 
 
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6022596&assignment_repo_type=AssignmentRepo)
