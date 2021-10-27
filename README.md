@@ -95,7 +95,7 @@ El comando base que se utiliza para hacer un alias es el siguiente:
  Se puede requisir la lista compleda de todos los argomentos ejecutando `gh alias <comando> --help`
 
 <a name = "aliasset"><a>
- ## alias set
+ ### alias set
 
 El comando de alias `set` permite que crear un nuevo alias. Creamos por ejemplo para el comando `gh repo list`. En este caso el alias que utilizaremos serà `list`.
 
@@ -104,14 +104,14 @@ El comando de alias `set` permite que crear un nuevo alias. Creamos por ejemplo 
 Se nota cómo **no** se pone el comando *gh* entre los ápices del comando que nos quieremos hacer el alias. 
 
 <a name = "aliaslist"><a>
- ## alias list
+ ### alias list
 
 Para obtener una lista de los alias que se han credo se utiliza el comando `gh alias list`.
 
 ![alias list](/Img5_alias_list.jpg)
 
 <a name = "aliasdelete"><a>
- ##  alias delete
+ ###  alias delete
 
  Para eliminar un alias se utiliza el comando `gh alias delete <alias>`
 
@@ -157,11 +157,12 @@ Para acceder a las organizaciones a las que apartenezco es necesario acceder en 
 <a name = "orgslist"><a>
 ## 6. orgs-list
 
-El objectivo ahora es crear un comando alias que nos permite de acceder a las organizaciones. El comando que se ejecuta para obtener esta información es `gh api /user/membership/orgs | jq '.[].organization | .login, .url'`
+El objectivo ahora es crear un comando alias que nos permite de acceder a las organizaciones. El comando que se ejecuta para obtener esta información es `gh api /user/memberships/orgs | jq '.[].organization | .login, .url'`
 
 ![organization login y url](/Img9_login_url.jpg)
 
+Una vez que hemos encontrado el comando para obtener la información solicitada podemos creare el comando **orgs-list** ejecutando el código `gh alias set orgs-list "api /user/memberships/orgs | jq '.[].organization | .login, .url'"`
 
-
+![orgs-list alias](/Img9_alias_orgs-list.jpg)
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6022596&assignment_repo_type=AssignmentRepo)
