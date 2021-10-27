@@ -11,7 +11,9 @@ alu0101531700@ull.edu.es
   * [gh alias list](#aliaslist)
   * [gh alias delete](#aliasdelete)
 5. [Seleccionar las organizaciones a las que se apartenece](#selectorgs)
-6. [gh org list](#orglist)
+6. [gh org-list](#orglist)
+7. [gh extension](#extension)
+
 
 
 
@@ -23,13 +25,13 @@ El comando `gh` es el comando de GitHub que se emplega en el terminal.
 <a name = "create"><a>
 ## 2. gh create repo
 
-En primero lugar para crear un repositorio sobre gitpod es necesario autenticarse ejecutendo el codigo:
+En primero lugar para crear un repositorio sobre gitpod es necesario autenticarse ejecutendo el código:
  
 `gh auth login`.
 
 Será necesario generar un token sobre el perfil de GitHub y luego pegarlo sobre el terminal.
 
-Un vez que nos encontramos en nuestro _workspace_ es posible crear un repositorio ejecutando el codigo:
+Un vez que nos encontramos en nuestro _workspace_ es posible crear un repositorio ejecutando el código:
 
  `gh repo create ULL-ESIT-DMSI-1920/prueba-lauramanzini`
 
@@ -54,7 +56,7 @@ Se puede consultar la documentación para eliminar un repositorio se encuentra e
 
 Desde la documentación podemos ver como a través del comando `curl` es posible eliminar el repositorio.
 
-Ejecutando el codigo:
+Ejecutando el código:
 
 ```
 curl \
@@ -135,7 +137,7 @@ Para obtener las informacciones que están contenida en el file json que hemos o
 
 Los comandos más utilizados se pueden consultar al siguiente [enlace](https://stedolan.github.io/jq/manual/#Basicfilters).
 
-Después de instalar la herramienta se ejecuta el codigo `brew install jq` sobre GitPod:
+Después de instalar la herramienta se ejecuta el código `brew install jq` sobre GitPod:
 
 ![jq install](/Img7_jq_install.jpg)
 
@@ -145,9 +147,9 @@ El file json es un array de elementos y para acceder a esos se utiliza la siguie
 * En los corchetes ponemos la posicción del elemento del array que queremos seleccionar
 * Despues de los corchetes ponemos un punto `.` cada vez que queremos acceder a uno de los elementos del elemento del array seleccionado el los corchetes.
 
-Por ejemplo ejecutando el codigo `gh api /user/memberships/orgs | jq '.[0]'` obtenimos toda la información relativa el primero elemento del array, es decir el elemento que es en la posicción 0 del array.
+Por ejemplo ejecutando el código `gh api /user/memberships/orgs | jq '.[0]'` obtenimos toda la información relativa el primero elemento del array, es decir el elemento que es en la posicción 0 del array.
 
-Una otra manera de obtener las misma informaciones pero en formato diferente es ejecutando el codigo:
+Una otra manera de obtener las misma informaciones pero en formato diferente es ejecutando el código:
  `gh api /user/memberships/orgs --jq '.[0]'`
 
 Para acceder a las organizaciones a las que apartenezco es necesario acceder en primero al campo *organizations* y luego al campo *login* de lo mismo. Se ejecuta:
@@ -170,5 +172,38 @@ Una vez que hemos encontrado el comando para obtener la información solicitada 
  `gh alias set orgs-list "api /user/memberships/orgs | jq '.[].organization | .login, .url'"`
 
 ![orgs-list alias](/Img9_alias_orgs-list.jpg)
+
+<a name = "extension"><a>
+## 7. gh extension
+
+Una gh extension es una extensión de un comando de GitHub CLI que una vez instalada o creada se puede utilizar.
+
+El comando `gh extension` tiene 5 comandos:
+
+*  create: para crear una nueva gh extension
+*  install: para instalar una gh extension desde un repositorio que ya existe
+*  list: muestra la lista de todos los gh extension que se han instalado
+*  remove: quita una gh extension ya instalada
+*  upgrade: hace un upgrade de una gh extension ya instalada
+
+Para major información se consulte la [documentación de GitHub](https://docs.github.com/en/github-cli/github-cli/creating-github-cli-extensions).
+
+La extension que creo es `gh-repo-view`. 
+
+Se utiliza el metodo `gh extension create` para crear una extension del comando que será llamado `gh-repo-view` ejecutando el codigo:
+
+```
+gh extension create gh-repo-view
+cd gh-repo-view
+gh repo create --public ULL-ESIT-DMSI-1920/gh-repo-view
+```
+Ahora tenemos un repositorio creado en la organización ULL-ESIT-DMSI-1920 que es llamado gh-repo-view.
+
+Se puede también hacer un commit sobre este repositorio de la siguiente manera:
+
+```
+git commit -am 'Primer prueba de laura'
+git push --set-upstream origin master
+```
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6022596&assignment_repo_type=AssignmentRepo)
