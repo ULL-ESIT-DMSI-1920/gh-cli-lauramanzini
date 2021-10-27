@@ -123,8 +123,6 @@ Para obtener una lista de los alias que se han creado se utiliza el comando: `gh
 
 Para ver todas las organizaciones a las que pertenezco utilizo el comando  se consulta la [documentación de GitHub](https://docs.github.com/en/rest/reference/orgs#list-organization-memberships-for-the-authenticated-user) y se encuentra el comando `gh api  /user/memberships/orgs` que nos permite de obtener una lista de todas las afiliaciones a organizaciones.
 
-![gh api](Img6_gh_memberships.jpg)
-
 Añadendo el comando `| jq` al final se puede acceder al file .json con toda la información sobre las organizaciones a las que el mi perfil de GitHub está asociado.
 
 El file json que obtenimos es un file que es muy largo y a veces bastante dificil de entender. Para solucionar este problema se utiliza el comando `--paginate` realice solicitudes HTTP adicionales para obtener todas las páginas de resultados. Ejecutamos:
