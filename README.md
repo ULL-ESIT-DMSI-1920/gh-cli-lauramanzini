@@ -4,12 +4,9 @@
 alu0101531700@ull.edu.es
 
 1. [Introducción](intro)
-2. [gh create repo](create)
-3. [gh delete repo](delete)
-4. [gh alias](#alias)
-  * [gh alias set](#aliasset)
-  * [gh alias list](#aliaslist)
-  * [gh alias delete](#aliasdelete)
+2. [gh alias](#alias)
+3. [alias gh create-repo](#create)
+4. [alias gh delete-repo](#delete)
 5. [Seleccionar las organizaciones a las que se apartenece](#selectorgs)
 6. [gh org-list](#orglist)
 7. [gh extension](#extension)
@@ -22,8 +19,26 @@ alu0101531700@ull.edu.es
 
 El comando `gh` es el comando de GitHub que se emplega en el terminal.
 
+
+<a name = "alias"><a>
+## 2. gh alias
+
+El comando `gh alias` se utiliza para semplificar y crear _shortcut_ para todos los comandos de gh que se utilizan más frecuentemente. La [documentación](https://cli.github.com/manual/gh_alias) explica como utilizar el comando.
+
+Es importante explicitar todos los _arguments_ y también los _flags_ del comando de lo que se quiere hacer el alias.
+
+El comando base que se utiliza para hacer un alias es el siguiente:
+
+ `gh alias <comando> [flags]`
+
+ Los comandos que son disponibles para el utilizo de alias son los siguientes:
+
+ * set: para crear un nuevo alias
+ * delete: para eliminar un alias ya existente
+ * list: para enumerar los alias 
+
 <a name = "create"><a>
-## 2. gh create repo
+## 3. alias gh create-repo
 
 En primero lugar para crear un repositorio sobre gitpod es necesario autenticarse ejecutendo el código:
  
@@ -43,8 +58,15 @@ Para visualizar una lista de los repositorios que estan entre la organización s
 
 ![Repo list](Img2_view.jpg)
 
+Para crear un 
+
+```
+gh alias set repo-create 'repo create ULL-ESIT-DMSI-1920/$1'
+gh repo-create prueba1
+```
+
 <a name = "delete"><a>
-## 3. gh delete repo
+## 4. alias gh delete-repo
 
 Para eliminar un repositorio se utiliza el comando `gh api` para tener una lista de los _flags_ que son disponibles para el comando.
 
@@ -78,47 +100,16 @@ gh api \
 
 ![delete repo](/Img4_delete_repo.jpg)
 
-<a name = "alias"><a>
-## 4. gh alias
+Para crear utilizamos el comando `gh alias set`.
 
-El comando `gh alias` se utiliza para semplificar y crear _shortcut_ para todos los comandos de gh que se utilizan más frecuentemente. La [documentación](https://cli.github.com/manual/gh_alias) explica como utilizar el comando.
+```
+gh alias set repo-delete 'api \
+  -X DELETE \
+  -H "Accept: application/vnd.github.v3+json" \
+  https://api.github.com/repos/ULL-ESIT-DMSI-1920/prueba-lauramanzini'
+```
 
-Es importante explicitar todos los _arguments_ y también los _flags_ del comando de lo que se quiere hacer el alias.
 
-El comando base que se utiliza para hacer un alias es el siguiente:
-
- `gh alias <comando> [flags]`
-
- Los comandos que son disponibles para el utilizo de alias son los siguientes:
-
- * delete
- * list
- * set
-
- Se puede requisir la lista compleda de todos los argomentos ejecutando `gh alias <comando> --help`
-
-<a name = "aliasset"><a>
- ### alias set
-
-El comando de alias `set` permite que crear un nuevo alias. Creamos por ejemplo para el comando `gh repo list`. En este caso el alias que utilizaremos serà `list`.
-
-![alias set](/Img5_alias_set.jpg)
-
-Se nota cómo **no** se pone el comando *gh* entre los ápices del comando que nos quieremos hacer el alias. 
-
-<a name = "aliaslist"><a>
- ### alias list
-
-Para obtener una lista de los alias que se han creado se utiliza el comando: `gh alias list`.
-
-![alias list](/Img5_alias_list.jpg)
-
-<a name = "aliasdelete"><a>
- ###  alias delete
-
- Para eliminar un alias se utiliza el comando: `gh alias delete <alias>`
-
-![alias delete](/Img5_alias_delete.jpg )
 
 <a name = "selectorgs"><a>
 ## 5. Seleccionar las organizaciones a las que se apartenece
