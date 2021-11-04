@@ -78,7 +78,7 @@ Se puede consultar la documentación para eliminar un repositorio se encuentra e
 
 Desde la documentación podemos ver como a través del comando `curl` es posible eliminar el repositorio.
 
-Ejecutando el código:
+Imaginamos de tener un repositorio llamado `prueba-lauramanzini` en la organización `ULL-ESIT-DMSI-1920`. La documentación indica que utilizando el siguiente código será posible eliminar el dicho repositorio:
 
 ```
 curl \
@@ -87,9 +87,7 @@ curl \
   https://api.github.com/repos/ULL-ESIT-DMSI-1920/prueba-lauramanzini
 ```
 
-El comando `curl` no va a funcionar por que no se encuentra la documentación necesaria para hacer el cambio.
-
-Entoncés se utiliza el comando `gh api`:
+El comando `curl` no va a funcionar por que no se encuentra la documentación necesaria para hacer el cambio. De otra manera se utiliza el comando `gh api`:
 
 ```
 gh api \
@@ -100,16 +98,11 @@ gh api \
 
 ![delete repo](/Img4_delete_repo.jpg)
 
-Para crear utilizamos el comando `gh alias set`.
+Para crear un comando alias que pueda eliminar un repositorio seleccionado en una organización utilizamos el comando `gh alias set`.
 
-```
-gh alias set repo-delete 'api \
-  -X DELETE \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/ULL-ESIT-DMSI-1920/prueba-lauramanzini'
-```
+`gh alias set repo-delete 'api \-X DELETE "/repos/org/$1"`
 
-
+*Nota*:  Cuando ejecutamos el comando repo-delete será necesario explicitar la organización y también el nombre del repositorio que queremos eliminare 
 
 <a name = "selectorgs"><a>
 ## 5. Seleccionar las organizaciones a las que se apartenece
