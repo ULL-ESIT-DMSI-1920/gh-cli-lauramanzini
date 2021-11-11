@@ -42,23 +42,25 @@ El comando base que se utiliza para hacer un alias es el siguiente:
 
 En primero lugar para crear un repositorio sobre gitpod es necesario autenticarse ejecutendo el código:
  
-`gh auth login`.
+`gh auth login`
 
 Será necesario generar un token sobre el perfil de GitHub y luego pegarlo sobre el terminal.
 
 Un vez que nos encontramos en nuestro _workspace_ es posible crear un repositorio ejecutando el código:
 
+`gh repo create org/repo`
+
+Si quieremos por ejemplo crear un repositorio sobre la organizacion ULL-ESIT-DMSI-1920 ejecutamos el siguiente código:
+
  `gh repo create ULL-ESIT-DMSI-1920/prueba-lauramanzini`
 
 ![Create repo](Img2_create1.jpg)
-
-En nuestro caso el repositorio será parte de la organización ULL-ESIT-DMSI-1920.
 
 Para visualizar una lista de los repositorios que estan entre la organización se ejecuta `gh repo list ULL-ESIT-DMSI-1920`.
 
 ![Repo list](Img2_view.jpg)
 
-Para crear un 
+Para crear un comando alias que sea capaz de crear un repositorio sobre una organización que ya existe ejecutamo el comando `gh alias set` como sigue:
 
 ```
 gh alias set repo-create 'repo create ULL-ESIT-DMSI-1920/$1'
