@@ -176,7 +176,7 @@ Una vez que hemos encontrado el comando para obtener la información solicitada 
 <a name = "extension"><a>
 ## 7. gh extension
 
-Una gh extension es una extensión de un comando de GitHub CLI que una vez instalada o creada se puede utilizar.
+Una gh extensión es una extensión de un comando de GitHub CLI que una vez instalada o creada se puede utilizar.
 
 El comando `gh extension` tiene 5 comandos:
 
@@ -188,9 +188,9 @@ El comando `gh extension` tiene 5 comandos:
 
 Para major información se consulte la [documentación de GitHub](https://docs.github.com/en/github-cli/github-cli/creating-github-cli-extensions).
 
-La extension que creo es `gh-repo-rename-lauramanzini`. 
+Se crea la extensión **gh-repo-rename-lauramanzini**. 
 
-Se utiliza el metodo `gh extension create` para crear una extension del comando que será llamado `gh-repo-rename-lauramanzini` ejecutando el codigo:
+Se utiliza el metodo `gh extension create` para crear una extensión del comando que será llamado `gh-repo-rename-lauramanzini` ejecutando el código:
 
 ```
 gh extension create gh-repo-rename-lauramanzini
@@ -206,9 +206,9 @@ git commit -am 'Primer prueba de laura'
 git push --set-upstream origin master
 ```
 
-Una vez que hemos creado el repositorio en la organización es necesario crear un submodulo entre el repositorio que tenemos con el comando `git submodule add <URL>`. 
+Una vez que hemos creado el repositorio en la organización es necesario crear un submodulo entre el repositorio que tenemos a través del comando `git submodule add <URL>`. 
 
-Ejecutamos entoncés en la carpeta gh-cli-lauramanzini el siguiente codigo:
+Ejecutamos entoncés en la carpeta gh-cli-lauramanzini el siguiente código:
 
 `git submodule add https://github.com/ULL-ESIT-DMSI-1920/gh-repo-rename-lauramanzini.git`
 
