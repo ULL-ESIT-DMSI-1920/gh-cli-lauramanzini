@@ -4,12 +4,9 @@
 alu0101531700@ull.edu.es
 
 1. [Introducción](intro)
-2. [gh create repo](create)
-3. [gh delete repo](delete)
-4. [gh alias](#alias)
-  * [gh alias set](#aliasset)
-  * [gh alias list](#aliaslist)
-  * [gh alias delete](#aliasdelete)
+2. [gh alias](#alias)
+3. [alias gh create-repo](#create)
+4. [alias gh delete-repo](#delete)
 5. [Seleccionar las organizaciones a las que se apartenece](#selectorgs)
 6. [gh org-list](#orglist)
 7. [gh extension](#extension)
@@ -22,64 +19,9 @@ alu0101531700@ull.edu.es
 
 El comando `gh` es el comando de GitHub que se emplega en el terminal.
 
-<a name = "create"><a>
-## 2. gh create repo
-
-En primero lugar para crear un repositorio sobre gitpod es necesario autenticarse ejecutendo el código:
- 
-`gh auth login`.
-
-Será necesario generar un token sobre el perfil de GitHub y luego pegarlo sobre el terminal.
-
-Un vez que nos encontramos en nuestro _workspace_ es posible crear un repositorio ejecutando el código:
-
- `gh repo create ULL-ESIT-DMSI-1920/prueba-lauramanzini`
-
-![Create repo](Img2_create1.jpg)
-
-En nuestro caso el repositorio será parte de la organización ULL-ESIT-DMSI-1920.
-
-Para visualizar una lista de los repositorios que estan entre la organización se ejecuta `gh repo list ULL-ESIT-DMSI-1920`.
-
-![Repo list](Img2_view.jpg)
-
-<a name = "delete"><a>
-## 3. gh delete repo
-
-Para eliminar un repositorio se utiliza el comando `gh api` para tener una lista de los _flags_ que son disponibles para el comando.
-
-![api help](/Img1_gh_api_help.jpg)
-
-El flag `-X` nos dice que va a ser posible utilizar uno de los metodos (get,delete ...) para cambiar los repositorios.
-
-Se puede consultar la documentación para eliminar un repositorio se encuentra en [las referencias de los repositorios API](https://docs.github.com/en/rest/reference/repos). 
-
-Desde la documentación podemos ver como a través del comando `curl` es posible eliminar el repositorio.
-
-Ejecutando el código:
-
-```
-curl \
-  -X DELETE \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/ULL-ESIT-DMSI-1920/prueba-lauramanzini
-```
-
-El comando `curl` no va a funcionar por que no se encuentra la documentación necesaria para hacer el cambio.
-
-Entoncés se utiliza el comando `gh api`:
-
-```
-gh api \
-  -X DELETE \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/ULL-ESIT-DMSI-1920/prueba-lauramanzini
-```
-
-![delete repo](/Img4_delete_repo.jpg)
 
 <a name = "alias"><a>
-## 4. gh alias
+## 2. gh alias
 
 El comando `gh alias` se utiliza para semplificar y crear _shortcut_ para todos los comandos de gh que se utilizan más frecuentemente. La [documentación](https://cli.github.com/manual/gh_alias) explica como utilizar el comando.
 
@@ -91,34 +33,78 @@ El comando base que se utiliza para hacer un alias es el siguiente:
 
  Los comandos que son disponibles para el utilizo de alias son los siguientes:
 
- * delete
- * list
- * set
+ * set: para crear un nuevo alias
+ * delete: para eliminar un alias ya existente
+ * list: para enumerar los alias 
 
- Se puede requisir la lista compleda de todos los argomentos ejecutando `gh alias <comando> --help`
+<a name = "create"><a>
+## 3. alias gh create-repo
 
-<a name = "aliasset"><a>
- ### alias set
+En primero lugar para crear un repositorio sobre gitpod es necesario autenticarse ejecutendo el código:
+ 
+`gh auth login`
 
-El comando de alias `set` permite que crear un nuevo alias. Creamos por ejemplo para el comando `gh repo list`. En este caso el alias que utilizaremos serà `list`.
+Será necesario generar un token sobre el perfil de GitHub y luego pegarlo sobre el terminal.
 
-![alias set](/Img5_alias_set.jpg)
+Un vez que nos encontramos en nuestro _workspace_ es posible crear un repositorio ejecutando el código:
 
-Se nota cómo **no** se pone el comando *gh* entre los ápices del comando que nos quieremos hacer el alias. 
+`gh repo create org/repo`
 
-<a name = "aliaslist"><a>
- ### alias list
+Si quieremos por ejemplo crear un repositorio sobre la organizacion ULL-ESIT-DMSI-1920 ejecutamos el siguiente código:
 
-Para obtener una lista de los alias que se han creado se utiliza el comando: `gh alias list`.
+ `gh repo create ULL-ESIT-DMSI-1920/prueba-lauramanzini`
 
-![alias list](/Img5_alias_list.jpg)
+![Create repo](Img2_create1.jpg)
 
-<a name = "aliasdelete"><a>
- ###  alias delete
+Para visualizar una lista de los repositorios que estan entre la organización se ejecuta `gh repo list ULL-ESIT-DMSI-1920`.
 
- Para eliminar un alias se utiliza el comando: `gh alias delete <alias>`
+![Repo list](Img2_view.jpg)
 
-![alias delete](/Img5_alias_delete.jpg )
+Para crear un comando alias que sea capaz de crear un repositorio sobre una organización que ya existe ejecutamo el comando `gh alias set` como sigue:
+
+```
+gh alias set repo-create 'repo create ULL-ESIT-DMSI-1920/$1'
+gh repo-create prueba1
+```
+
+<a name = "delete"><a>
+## 4. alias gh delete-repo
+
+Para eliminar un repositorio se utiliza el comando `gh api` para tener una lista de los _flags_ que son disponibles para el comando.
+
+![api help](/Img1_gh_api_help.jpg)
+
+El flag `-X` nos dice que va a ser posible utilizar uno de los metodos (get,delete ...) para cambiar los repositorios.
+
+Se puede consultar la documentación para eliminar un repositorio se encuentra en [las referencias de los repositorios API](https://docs.github.com/en/rest/reference/repos). 
+
+Desde la documentación podemos ver como a través del comando `curl` es posible eliminar el repositorio.
+
+Imaginamos de tener un repositorio llamado `prueba-lauramanzini` en la organización `ULL-ESIT-DMSI-1920`. La documentación indica que utilizando el siguiente código será posible eliminar el dicho repositorio:
+
+```
+curl \
+  -X DELETE \
+  -H "Accept: application/vnd.github.v3+json" \
+  https://api.github.com/repos/ULL-ESIT-DMSI-1920/prueba-lauramanzini
+```
+
+El comando `curl` no va a funcionar por que no se encuentra la documentación necesaria para hacer el cambio. De otra manera se utiliza el comando `gh api`:
+
+```
+gh api \
+  -X DELETE \
+  -H "Accept: application/vnd.github.v3+json" \
+  https://api.github.com/repos/ULL-ESIT-DMSI-1920/prueba-lauramanzini
+```
+
+![delete repo](/Img4_delete_repo.jpg)
+
+Para crear un comando alias que pueda eliminar un repositorio seleccionado en una organización utilizamos el comando `gh alias set`.
+
+`gh alias set repo-delete 'api \-X DELETE "/repos/org/$1"`
+
+*Nota*:  Cuando ejecutamos el comando repo-delete será necesario explicitar la organización y también el nombre del repositorio que queremos eliminare 
 
 <a name = "selectorgs"><a>
 ## 5. Seleccionar las organizaciones a las que se apartenece
@@ -212,6 +198,12 @@ Ejecutamos entoncés en la carpeta gh-cli-lauramanzini el siguiente código:
 
 `git submodule add https://github.com/ULL-ESIT-DMSI-1920/gh-repo-rename-lauramanzini.git`
 
+Ahora a través del comando `ls -la` es posible comprobar la presencia del fichero `.gitsubmodules`. Es todavía necesario hacer un commit de los cambio que se han aportado al repositorio. Ejecutamos:
+
+```
+git commit -m Commit16
+git push
+```
 
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6022596&assignment_repo_type=AssignmentRepo)
