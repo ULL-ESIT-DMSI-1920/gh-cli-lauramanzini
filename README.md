@@ -188,16 +188,16 @@ El comando `gh extension` tiene 5 comandos:
 
 Para major información se consulte la [documentación de GitHub](https://docs.github.com/en/github-cli/github-cli/creating-github-cli-extensions).
 
-La extension que creo es `gh-repo-view`. 
+La extension que creo es `gh-repo-rename-lauramanzini`. 
 
-Se utiliza el metodo `gh extension create` para crear una extension del comando que será llamado `gh-repo-view` ejecutando el codigo:
+Se utiliza el metodo `gh extension create` para crear una extension del comando que será llamado `gh-repo-rename-lauramanzini` ejecutando el codigo:
 
 ```
-gh extension create gh-repo-view
-cd gh-repo-view
-gh repo create --public ULL-ESIT-DMSI-1920/gh-repo-view
+gh extension create gh-repo-rename-lauramanzini
+cd gh-repo-rename-lauramanzini
+gh repo create --public ULL-ESIT-DMSI-1920/gh-repo-rename-lauramanzini
 ```
-Ahora tenemos un repositorio creado en la organización ULL-ESIT-DMSI-1920 que es llamado gh-repo-view.
+Ahora tenemos un repositorio creado en la organización ULL-ESIT-DMSI-1920 que es llamado gh-repo-rename-lauramanzini.
 
 Se puede también hacer un commit sobre este repositorio de la siguiente manera:
 
@@ -210,7 +210,7 @@ Una vez que hemos creado el repositorio en la organización es necesario crear u
 
 Ejecutamos entoncés en la carpeta gh-cli-lauramanzini el siguiente codigo:
 
-`git submodule add https://github.com/ULL-ESIT-DMSI-1920/gh-repo-view.git`
+`git submodule add https://github.com/ULL-ESIT-DMSI-1920/gh-repo-rename-lauramanzini.git`
 
 
 
