@@ -1,3 +1,3 @@
-[submodule "gh-repo-view"]
-	path = gh-repo-rename-lauramanzini/gh-repo-rename-lauramanzini
-	url = https://github.com/ULL-ESIT-DMSI-1920/gh-repo-view
+[submodule "gh-repo-rename-lauramanzini"]
+	path = gh-repo-rename-lauramanzini
+	url = https://github.com/ULL-ESIT-DMSI-1920/gh-repo-rename-lauramanzini
