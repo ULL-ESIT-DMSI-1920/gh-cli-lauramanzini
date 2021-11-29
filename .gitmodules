@@ -1,0 +1,3 @@
+[submodule "gh-repo-rename"]
+	path = gh-repo-rename
+	url = https://github.com/lauramanzini/gh-repo-rename.git
